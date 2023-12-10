@@ -5,19 +5,19 @@ public class Content {
     private final String type;
     private final int value;
     private final int row_index;
+    private final int last_index;
     private final int start_index;
-    private final int length;
 
     Content(String type, int value, int row_index, int start_index, int end_index){
         this.type = type;
         this.start_index = start_index;
-        this.length = end_index - start_index;
+        this.last_index = end_index;
         this.row_index = row_index;
         this.value = value;
     }
 
-    public int getRange() {
-        return length;
+    public int getLast_index() {
+        return last_index;
     }
 
     public String getType() {
@@ -31,6 +31,10 @@ public class Content {
         return row_index;
     }
 
+    public int getValue() {
+        return value;
+    }
+
     @Override
     public String toString() {
         if (this.type.compareTo("char") == 0) {
@@ -38,7 +42,7 @@ public class Content {
                     "type='" + type + '\'' +
                     ", row_index=" + row_index +
                     ", start_index=" + start_index +
-                    ", length= " + length +
+                    ", last_index= " + last_index +
                     '}';
         } else{
             return "Content{" +
@@ -46,7 +50,7 @@ public class Content {
                     "value='" + value + '\'' +
                     ", row_index=" + row_index +
                     ", start_index=" + start_index +
-                    ", length= " + length +
+                    ", last_index= " + last_index +
                     '}';
         }
     }

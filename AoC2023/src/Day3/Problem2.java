@@ -7,7 +7,7 @@ import java.util.Scanner;
 import static java.lang.Character.isDigit;
 import java.util.ArrayList;
 
-public class Problem1 {
+public class Problem2 {
     public static void main(String[] args) {
         File f = new File("/home/brt-phono/git_reps/AdventOfCode/AoC2023/src/Day3/input.txt");
         String currLine;
@@ -48,18 +48,26 @@ public class Problem1 {
                     } else is_num = 0;
                 }
             }
-            // TODO implementare controllo numeri vicino simboli
+            int n_nums;
+            int num_1;
+            int num_2;
             for (Content sym: chars){
+                n_nums = 0;
+                num_1 = 0;
+                num_2 = 0;
                 for (Content num: nums){
                     if (num.get_Row() > sym.get_Row() + 1) break;
                     if (num.get_Row() >= sym.get_Row() - 1){
                         int ind = num.getStart_index();
                         if (Math.max(sym.getStart_index(), ind) - Math.min(sym.getStart_index(), ind) <= 1 ||
                                 Math.max(sym.getLast_index(), num.getLast_index()) - Math.min(sym.getLast_index(), num.getLast_index()) <= 1){
-                            sum += num.getValue();
+                            if (num_1 == 0) num_1 = num.getValue();
+                            else num_2 = num.getValue();
+                            n_nums++;
                         }
                     }
                 }
+                if (n_nums == 2) sum += num_1*num_2;
             }
             System.out.println("-> " + sum);
         } catch (FileNotFoundException e) {
